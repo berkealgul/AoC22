@@ -3,7 +3,7 @@ import scala.math
 
 object Main {
 	def main(args: Array[String]) = {
-		var filename = "../inputs/day1/input1.txt"
+		var filename = "../inputs/input1.txt"
 		var max = 0
 		var sum = 0
 

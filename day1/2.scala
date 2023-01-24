@@ -5,7 +5,7 @@ import scala.collection.mutable.PriorityQueue
 
 object Main {
     def main(args: Array[String]) = {
-        var filename = "../inputs/day1/input1.txt"
+        var filename = "../inputs/input1.txt"
         val que : PriorityQueue[Int] = PriorityQueue()
         var sum = 0
         for (line <- Source.fromFile(filename).getLines) {
