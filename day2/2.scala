@@ -8,10 +8,11 @@ object Main {
 
         // A-X rock B-Y paper C-Z scissors
         val points = Map('X' -> 1, 'Y' -> 2, 'Z' -> 3)
+        val results = Map('X' -> 0, 'Y' -> 3, 'Z' -> 6)
 
-        // i counters map[i]
-        val counters = Map('A' -> 'Z', 'B' -> 'X', 'C' -> 'Y', 
-                           'X' -> 'C', 'Y' -> 'A', 'Z' -> 'B')
+        val wins = Map('C' -> 'X', 'A' -> 'Y', 'B' -> 'Z')
+        val loses = Map('B' -> 'X', 'A' -> 'Z', 'C' -> 'Y')
+        val equals = Map('A' -> 'X', 'B' -> 'Y', 'C' -> 'Z') 
 
         for (line <- Source.fromFile(filename).getLines) {
             breakable {
@@ -21,15 +22,16 @@ object Main {
 
                 var rival = line(0)
                 var player = line(2)
+                val result = results(player)
 
-                score += points(player)
+                score += result
 
-                if (counters(player) == rival) {
-                    score += 6
-                } else if(counters(rival) == player) {
-                    break
-                } else {
-                    score += 3
+                if (result == 6) { // win
+                    score += points(wins(rival))
+                } else if(result == 3) { // draw
+                    score += points(equals(rival))
+                } else { // lose
+                    score += points(loses(rival))
                 }
             }
         }
