@@ -25,15 +25,11 @@ object Main {
 
         for (line <- Source.fromFile(filename).getLines) {
             if(parseLine(line, arr)) { 
-                var i = 1
                 // arr = { fl, fr, sl, sr }
-                // fr >= sl
-                if(!(arr(2) == arr(0) || arr(3) == arr(1))) {  
-                    if(arr(2) < arr(0)) { i *= -1}
-                    if(arr(3) > arr(1)) { i *= -1}
+                // fr >= sl && sr >= fl || sr >= fl && fr >= sl
+                if((arr(1) >= arr(2) && arr(3) >= arr(0)) || (arr(3) >= arr(0) && arr(1) >= arr(2))) {  
+                    n_overlaps += 1     
                 }
-                
-                if(i == 1) { n_overlaps += 1 }
             }
         }
     
