@@ -23,11 +23,14 @@ object Main {
                     var src = args(3).toInt - 1
                     var des = args(5).toInt - 1 
 
-                    //println("---")
+                    var crates = new ListBuffer[Char]()
 
                     for(i <- 0 until amount) {
-                        var top = stacks(src).pop()
-                        stacks(des).push(top)
+                        crates += stacks(src).pop()
+                    }
+
+                    for (crate <- crates.reverse) {
+                        stacks(des).push(crate)
                     }
                 }
                 else {
@@ -64,6 +67,7 @@ object Main {
                         i += 1;
                     }
 
+                    
                     // for(stack <- stacks) {
                     //     println(stack)
                     // }
