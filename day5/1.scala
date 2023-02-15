@@ -13,6 +13,7 @@ object Main {
             Stack('P'))
 
         var tops = ""
+        var input_parsed = false
 
         for (line <- Source.fromFile(filename).getLines) {
             if(line.trim != "") {
@@ -32,6 +33,9 @@ object Main {
                     var top = stacks(src).pop()
                     stacks(des).push(top)
                 }
+            }
+            else {
+
             }
         }
 
