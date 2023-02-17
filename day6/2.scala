@@ -1,48 +1,42 @@
 import scala.io.Source
 import scala.collection.mutable.Map
+import util.control.Breaks._
 
 object Main {
     def main(args: Array[String]) = {
-        var filename = "../inputs/testcase.txt"
+        var filename = "../inputs/input6.txt"
         var input = Source.fromFile(filename).getLines.next()
-        var marker = findMarker(input, 3)
-        var result = findMsgStart(input, marker+15)
-        println(result-marker-1)
+        var result = findMsgStart(input, 13)
+        println(result)
     }
 
-    def findMsgStart(input: String, idx: Int) : Int = {
-        if(idx >= input.length) { return -1 }
+    def findMsgStart(input: String, id: Int) : Int = {
+        var idx = id
 
-        var chars : Map[Char, Int] = Map()
+        while(idx < input.length) {
+            var chars : Map[Char, Int] = Map()
+            var suc = true;
 
-        for (i <- idx-15 until idx+1) {
-            var c = input(i)
-            if (chars.contains(c)) {
-                return findMsgStart(input, idx+1)
+            breakable {
+                for (i <- idx-13 until idx+1) {
+                    var c = input(i)
+                    if (chars.contains(c)) {
+                        suc = false;
+                        break
+                    }
+                    else {
+                        chars += (c -> 1)
+                    }
+                }
             }
-            else {
-                chars += (c -> 1)
+
+            if(suc) {
+                return idx+1
+            } else {
+                idx = idx + 1
             }
         }
 
-        return idx
-    }
-
-    def findMarker(input: String, idx: Int) : Int = {
-        if(idx == input.length) { return -1 }
-
-        var chars : Map[Char, Int] = Map()
-
-        for (i <- idx-3 until idx+1) {
-            var c = input(i)
-            if (chars.contains(c)) {
-                return findMarker(input, idx+1)
-            }
-            else {
-                chars += (c -> 1)
-            }
-        }
-
-        return idx+1
+        return -1;
     }
 }
