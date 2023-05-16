@@ -74,7 +74,6 @@ int max_visibility_score(const vector<vector<int>> &field)
             score *= count_visibles_of_line(field, j, i,  0, -1,  width, height);
 
             max_score = max(max_score, score);
-            //cout << i << "-" << j <<  "-" << score <<endl;
         }
     }
 
