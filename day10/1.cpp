@@ -15,7 +15,7 @@ public:
     Main()
     {
         stack<int> checkpoints = stack<int>({220, 180, 140, 100, 60, 20});
-        auto program = read_program("../inputs/testcase.txt");
+        auto program = read_program("../inputs/input10.txt");
 
         int cycles = 0;
         int signal_value = 1;
@@ -30,14 +30,7 @@ public:
                 cycles += 2;
                 signal_value += instruction.second;
                 
-                if(cycles - checkpoints.top() == 0)
-                {
-                    signal_strength += signal_value * cycles;
-                    cout << signal_value * cycles << endl; 
-                    cout << instruction.first << " " << cycles <<  " " << signal_value << " " << signal_strength << " " << instruction.second << endl;
-                    checkpoints.pop();
-                }
-                else if(cycles - checkpoints.top() >= 0) 
+                if(cycles - checkpoints.top() >= 0) 
                 {
                     cout << (signal_value-instruction.second) * (checkpoints.top()) << endl;
                     signal_strength += (signal_value-instruction.second) * (checkpoints.top());
