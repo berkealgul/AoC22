@@ -32,7 +32,6 @@ public:
                 
                 if(cycles - checkpoints.top() >= 0) 
                 {
-                    cout << (signal_value-instruction.second) * (checkpoints.top()) << endl;
                     signal_strength += (signal_value-instruction.second) * (checkpoints.top());
                     checkpoints.pop();
                 }
