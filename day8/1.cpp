@@ -68,15 +68,12 @@ void scan_line(const vector<vector<int>> &field, vector<vector<bool>> &visible,
 
 int main()
 {
-    auto field = read_input("../inputs/testcase.txt");
+    auto field = read_input("../inputs/input8.txt");
 
     int width = field[0].size();
     int height = field.size();
 
     vector<vector<bool>> visible(height, vector<bool>(width, false));
-
-    for 
-
 
     int visible_count = count_visible(visible);
 
